@@ -16,8 +16,8 @@ require('../models/bookmodel')
 let corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  // preflightContinue: false,
-  // optionsSuccessStatus: 204,
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
   // origin: 'http://localhost:3000',
   credentials: true
 };

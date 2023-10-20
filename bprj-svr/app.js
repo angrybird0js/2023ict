@@ -1,21 +1,18 @@
-
+// 접속관련 함수와 cors는 www파일에 있다.
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var selectbookRouter = require('./routes/selectbook');
-// var loginRouter = require('./routes/login');
+var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
 
-// 접속관련 함수와 cors는 www파일에 있다.
-
-
-
 var app = express();
-
+app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -29,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 // selbook 라우터 추가
 app.use('/selectbook', selectbookRouter);
-// app.use('/login', loginRouter);
+app.use('/login', loginRouter);
 app.use('/users', usersRouter); // 대출한 도서 목록 등
 
 // catch 404 and forward to error handler
