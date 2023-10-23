@@ -14,7 +14,7 @@ const LoginPage = () => {
       };
 
       // Axios를 사용하여 POST 요청을 보냅니다.
-      const response = await axios.get('http://localhost:8080/login', userData);
+      const response = await axios.post('http://localhost:8080/login', userData);
 
       // 응답을 확인하고 로그인이 성공했으면 알림 등을 표시할 수 있습니다.
       console.log('Login successful!', response.data);
