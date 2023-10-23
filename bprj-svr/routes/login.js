@@ -4,9 +4,8 @@ var router = express.Router();
 var cors = require('cors');
 var userinfo = require("../models/usermodel");
 
-
-
-router.get('/', cors(), async (req, res, next) => {
+// /login이 되어야 하는거 아닌가?
+router.post('/', cors(), async (req, res, next) => {
   try {
     // 데이터베이스 연결이 올바르게 이루어졌는지 확인
     if (mongoose.connection.readyState !== 1) {
