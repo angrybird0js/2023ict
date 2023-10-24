@@ -8,10 +8,11 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
+      
       // 사용자 입력을 JSON 형태로 만듭니다.
       const userData = {
         userId,
-        password
+        password,
       };
     
       // Axios를 사용하여 POST 요청을 보냅니다.
@@ -19,6 +20,10 @@ const LoginPage = () => {
 
       // 응답을 확인하고 로그인이 성공했으면 알림 등을 표시할 수 있습니다.
       console.log('Login successful!', response.data);
+      console.log(response.data.token)
+      window.localStorage.setItem("token", response.data.token);
+
+
     } catch (error) {
       console.error('Error during login:', error);
     }
