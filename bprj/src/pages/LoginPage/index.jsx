@@ -2,17 +2,18 @@ import { useState } from 'react';
 import axios from 'axios'; // Axios를 사용하여 HTTP 요청을 보낼 수 있도록 불러옵니다.
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  
 
   const handleLogin = async () => {
     try {
       // 사용자 입력을 JSON 형태로 만듭니다.
       const userData = {
-        username,
+        userId,
         password
       };
-
+    
       // Axios를 사용하여 POST 요청을 보냅니다.
       const response = await axios.post('http://localhost:8080/login', userData);
 
@@ -30,8 +31,8 @@ const LoginPage = () => {
         <label>Username:</label>
         <input
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
         />
         <br />
         <label>Password:</label>

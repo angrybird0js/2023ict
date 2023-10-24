@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var { Schema } = mongoose; // model 생성을 위해 한번에 선언하지 않음
 
-
 const bookSchema = new Schema({
   id: Number,
   author: String,
