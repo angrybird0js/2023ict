@@ -10,6 +10,8 @@ var http = require('http');
 var cors = require('cors');
 var dotenv = require('dotenv');
 var mongoose = require('mongoose');
+
+
 // const PORT = 8080;
 require('../models/bookmodel')
 
@@ -23,6 +25,11 @@ let corsOptions = {
 };
 
 dotenv.config();
+
+// passport module
+app.use(passport.initialize());
+app.use(passport.session());
+//cookie-parser 사용여부 확인해야 한다.
 
 // 온라인DB에 연결함
 mongoose.connect(process.env.MONGO_DB_URI)

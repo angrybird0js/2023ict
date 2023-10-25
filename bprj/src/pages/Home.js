@@ -22,19 +22,7 @@ const Home = () => {
     const fetchdata = async () => {
       try {
         // axios 사용
-        //const resp = await axios.get(`${process.env.BHOST}:${process.env.BPORT}/selectbook`)
-        const resp = await axios.get('http://localhost:8080/selectbook')
-          // .then(res => res.json())
-          // .then(() => setBooklst(JSON.parse(JSON.stringify(resp.data)))
-          // .then(res => res.json())
-          // .then(res => JSON.parse(JSON.stringify(res)))
-          // .then(setBooklst)
-          // .then(() => setBooklst(resp.data))
-          // .then(res => {
-          //   let v = JSON.parse(JSON.stringify(res.data));
-          //   setBooklst(v);
-          //   return (v);
-          // })
+        const resp = await axios.get(`${process.env.BHOST}/selectbook`)
           .catch(console.error)
         // console.log("Axios response: ", resp.data)
         setBooklst(resp.data) // 정상

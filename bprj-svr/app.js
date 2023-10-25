@@ -7,7 +7,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var selectbookRouter = require('./routes/selectbook');
-// var loginRouter = require('./routes/login');
+var mybookRouter = require('./routes/mybook');
+var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
 
 // 접속관련 함수와 cors는 www파일에 있다.

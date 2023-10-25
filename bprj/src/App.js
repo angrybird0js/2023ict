@@ -22,7 +22,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/bookintro:id" element={<Bookintro />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/loginpage" element={<LoginPage />} />
+      <Route path="/mypage" element={<MyPage />} />
       <Route path="/join" element={<Join />} />
     </Routes>
   );

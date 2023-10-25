@@ -1,35 +1,80 @@
-import {useState} from 'react'
+import { useState } from 'react'
+// import axios from 'axios'
+import Header from "../components/Header"; // Header 컴포넌트 불러오기
+
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [passwd, setPasswd] = useState(""); // 스키마와 구별
+
 
   const handleLogin = () => {
     // Implement your login logic here
+    // axios post 요청
+    const conn = async () => {
+      try {
+        // axios 사용, 로그인 정보 post 전송
+        // useState로부터 받은 값을 axios에 전달
+        const resp = await axios.post(`${process.env.BHOST}/users/login`, { username, passwd })
+          // post 이므로 헤더에 아이디를 포함하지 않도록 한다.
+          // const resp = await axios.get('http://localhost:8080/selectbook')
+          //
+          .then((result) => {
+            if (result.success) {
+              window.localstorage.setItem("mypagekey", result.token);
+              // islogin 키 처리 추가하고 Nav에서 적용
+              navigate("/MyPage");
+            }//end if
+          })
+          .catch(console.error)
+
+        // resp 결과값 받아서 처리
+        // if(resp.data.success) {
+        //  setAuthorized(resp.data.success)
+        // 토큰 저장
+        //
+        // }
+        // 토큰 저장 검사?
+
+      } catch (e) {
+        console.log(e);
+        // login 실패시 홈으로 redirect
+      }
+    };
+    conn();
+    // login 성공시 redirect
+
   };
 
   return (
     <div>
+      <div className="header-container">
+        <Header />
+      </div>
       <h2>Login Page</h2>
-      <form>
-        <label>Username:</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br />
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
-      </form>
+
+      <div>
+        <form>
+          <label>Username:</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <br />
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPasswd(e.target.value)}
+          />
+          <br />
+          <button type="button" onClick={handleLogin}>
+            Login
+          </button>
+        </form>
+      </div>
+
     </div>
   );
 };

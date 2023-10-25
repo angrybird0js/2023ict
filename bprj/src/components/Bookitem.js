@@ -10,7 +10,7 @@ const Bookitem = ({ bookitem }) => {
   return (
     <div >
       <Outlet />
-      <Link to={`/bookintro/${id}`} className="book-link">
+      <Link to={`/bookintro/:${id}`} className="book-link">
         <div><img src={imageLink} alt={title} /></div>
         <div className="book-details">
           <p>{title}</p>
