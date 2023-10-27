@@ -25,24 +25,38 @@ const MyPage = () => {
 
   const [mydata, setMydata] = useState([]);
 
+
   useEffect(() => {
     const mydataset = async () => {
       try {
         // axios 사용
-        const resp = await axios.post(`${process.env.BHOST}/mypage/`,
-          { token: this.mytoken })
+        const resp = await axios.post(`${process.env.BHOST}/mybook/`, //사용자, 책목록
+          { token: this.mytoken }) // 동작 확인 필요, 토큰을 키값으로 사용자명과 책목록을 불러온다.
           // const resp = await axios.get('http://localhost:8080/selectbook')
           // 전체 조회
           .catch(console.error)
-        setMydata(resp.data) // 정상
+        setMydata(resp.data)
+        // id 값을 바탕으로 데이터를 가져온다.
+        //
+
       } catch (e) {
         console.log(e);
       }
     };
     mydataset();
-    console.log(mydata); // 템플릿에 정리해야함, useState
+    console.log(mydata);
+    // 템플릿에 정리해야함, useState
+    // 사용자 mydata.user , 읽는책 mydata.bookidData
 
   }, [])
+
+  // 사용자 정보를 가져온 후 읽고있는 책 id를 바탕으로 책 정보를 가져와 컴포넌트를 통해 출력해야 한다.
+  // mydata.bookidData[]
+  // 템플릿 레이아웃 확인요
+  // 템플릿에서 컴포넌트 props
+
+
+
 
   return (
     <div className="home-container">
@@ -50,10 +64,10 @@ const MyPage = () => {
         <Header />
       </div>
 
-      <h1>{bdata.title} </h1>
+      <h1>{mydata.userId} </h1>
 
-      <h2>Description</h2>
-      <p>로그인해야 책을 읽을수 있습니다.</p>
+      <Booklist booklist={mydata.bookidData} />
+
     </div>
   )
 }

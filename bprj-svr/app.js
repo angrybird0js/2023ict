@@ -32,6 +32,7 @@ app.use('/', indexRouter);
 app.use('/selectbook', selectbookRouter);
 // app.use('/login', loginRouter);
 app.use('/users', usersRouter); // 대출한 도서 목록 등
+app.use('/mybook', mybookRouter); // MyPage
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
