@@ -1,0 +1,13 @@
+.book-info {
+    margin-bottom: 10px; /* 각 정보 항목 간의 여백을 조절합니다. */
+  }
+  
+  h1 {
+    font-size: 24px; /* title의 글자 크기를 크게 설정합니다. */
+    margin-bottom: 5px; /* title과 나머지 정보 간의 여백을 조절합니다. */
+  }
+  
+  .info-item {
+    margin: 3px 0; /* 각 정보 항목의 위아래 여백을 조절합니다. */
+  }
+  

@@ -1,33 +1,32 @@
-import { useState, useEffect } from 'react';
-// import { useState } from 'react';
-// import dummy from "../public/books.json";
-import axios from 'axios'
-import Booklist from "../../components/Booklist/index";
-import Header from "../../components/Header/index"; // Header 컴포넌트 불러오기
-import '../../App.css'
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Booklist from '../../components/Booklist/index';
+import Header from '../../components/Header/index';
+import Pagination from '../../components/Pagination/index';
+import '../../App.css';
 
 const Home = () => {
-  // const blist = JSON.parse(JSON.stringify(dummy));
-  // const [booklst,] = useState(blist); // 변경
-  // fetch의 url은 dotenv 처리해야 한다.
-
   const [booklst, setBooklst] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [booksPerPage] = useState(6);
 
   useEffect(() => {
-    const fetchdata = async () => {
+    const fetchData = async () => {
       try {
-        // axios 사용
-        const resp = await axios.get('http://localhost:8080/selectbook')
-          .catch(console.error)
-        setBooklst(resp.data) // 정상
-      } catch (e) {
-        console.log(e);
+        const resp = await axios.get('http://localhost:8080/selectbook');
+        setBooklst(resp.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
     };
-    fetchdata();
+    fetchData();
+  }, []);
 
-  }, [])
+  const indexOfLastBook = currentPage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = booklst.slice(indexOfFirstBook, indexOfLastBook);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <div className="home-container">
@@ -35,8 +34,14 @@ const Home = () => {
         <Header />
       </div>
 
-      <Booklist booklist={booklst} />
-
+      <div className="blist-container">
+        <Booklist booklist={currentBooks} />
+        <Pagination
+          booksPerPage={booksPerPage}
+          totalBooks={booklst.length}
+          paginate={paginate}
+        />
+      </div>
     </div>
   );
 };

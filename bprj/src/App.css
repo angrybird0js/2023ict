@@ -49,6 +49,7 @@
   margin-bottom: 20px;
   white-space: normal;
   box-sizing: border-box; /* 요소의 경계 상자 크기를 조정합니다. */
+  border: 1px solid #ddd; /* 실선 스타일을 추가합니다. */
 }
 
 

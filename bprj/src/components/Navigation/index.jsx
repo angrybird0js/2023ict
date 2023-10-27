@@ -19,6 +19,12 @@ function Navigation() {
           </Link>
         </li>
         <li>
+          <Link to="/mypage">
+            <AiOutlineQuestionCircle size={20} />
+            mypage
+          </Link>
+        </li>
+        <li>
           <Link to="/contact">
             <AiOutlineQuestionCircle size={20} />
             문의

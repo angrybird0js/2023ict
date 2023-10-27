@@ -4,6 +4,7 @@ import Home from './pages/Home/index';
 import LoginPage from './pages/LoginPage/index';
 import Join from './pages/Join/index';
 import Bookintro from './pages/Bookintro/index';
+import Mypage from './pages/Mypage/index';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/bookintro:id" element={<Bookintro />} />
       <Route path="/login" element={<LoginPage />} />
+
       <Route path="/join" element={<Join />} />
     </Routes>
   );
