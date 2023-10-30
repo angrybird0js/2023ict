@@ -18,10 +18,21 @@ const LoginPage = () => {
       // Axios를 사용하여 POST 요청을 보냅니다.
       const response = await axios.post('http://localhost:8080/login', userData);
 
+
+      if (response.data.success) {
+        
+        console.log('Login successful!', response.data);
+        console.log(response.data.token)
+        window.localStorage.setItem("token", response.data.token);
+        // 로그인 성공 시 홈 페이지로 리다이렉션
+        window.location.href = '/';
+  
+      } else {
+        // 로그인 실패 시 메시지를 처리하는 코드
+        // ...
+      }
+      
       // 응답을 확인하고 로그인이 성공했으면 알림 등을 표시할 수 있습니다.
-      console.log('Login successful!', response.data);
-      console.log(response.data.token)
-      window.localStorage.setItem("token", response.data.token);
 
 
     } catch (error) {

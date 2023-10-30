@@ -16,6 +16,7 @@ router.post('/', cors(), async (req, res, next) => {
     if (user) {
       // 유저가 존재하면 로그인 성공
       res.json({ success: true, token:user._id , message: 'Login successful' });
+      
     } else {
       // 유저가 존재하지 않으면 로그인 실패
       res.json({ success: false, message: 'Login failed' });
