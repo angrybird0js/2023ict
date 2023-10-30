@@ -10,8 +10,11 @@ var http = require('http');
 var cors = require('cors');
 var dotenv = require('dotenv');
 var mongoose = require('mongoose');
+
+
 // const PORT = 8080;
 require('../models/bookmodel')
+require('../models/usermodel')
 
 let corsOptions = {
   origin: "*",
@@ -23,6 +26,7 @@ let corsOptions = {
 };
 
 dotenv.config();
+
 
 // 온라인DB에 연결함
 mongoose.connect(process.env.MONGO_DB_URI)
