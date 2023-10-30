@@ -11,7 +11,9 @@ import axios from 'axios';
 
 // props 대신 라우터에서 받아야 한다.
 // 표시방법을 변경하여 DB에서 자료를 받아오도록 한다.
-const param = useParams(); // 라우터의 파라미터를 받는다.
+
+import Header from "../components/Header"; // Header 컴포넌트 불러오기
+
 
 // 백엔드 라우터
 const Bookintro = () => {
@@ -19,16 +21,19 @@ const Bookintro = () => {
   // fetch의 url은 dotenv 처리해야 한다.
 
   const [bookdata, setBookdata] = useState([]);
+  const bookidparam = useParams();
+  // 라우터의 파라미터를 받는다.
+  // 파라미터 아닌 URI로 나온다.
+  console.log("parameter: ", bookidparam); // 정상
 
   useEffect(() => {
     const fetchdata = async () => {
       try {
 
-
         // axios 사용
-        // mypage에서 토큰을 넘긴다.
-        const resp = await axios.get(`${process.env.BHOST}/selectbook/:id`,
-          { bookid: param.id })
+        // 로그인하지 않은 상태
+        const resp = await axios.get(`${process.env.BHOST}/selectbook/:${bookidparam.id}`) //get req, port주의
+          // { bookid: param.id }) // 오류, post방식, 닫는 괄호 추가
           // const resp = await axios.get('http://localhost:8080/selectbook')
           // 전체 조회
           .catch(console.error)
@@ -39,14 +44,14 @@ const Bookintro = () => {
     };
     fetchdata();
 
-  }, [])
+  }, []) // useParams 오류
 
 
-  console.log("State: ", bookdata)
+  console.log("State: ", bookdata) // 빈 배열
 
   // 331p. 문자열을 숫자로 교체해야 한다.
   // const bdata = blst[param.id];
-  const bdata = bookdata[param.id]; // 프론트 라우터 get id와 DB 대조
+  const bdata = bookdata[bookidparam.id]; // 프론트 라우터 get id와 DB 대조
 
   return (
     <div className="home-container">

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var frontbookRouter = require('./routes/frontbook');
 var selectbookRouter = require('./routes/selectbook');
 var mybookRouter = require('./routes/mybook');
 var loginRouter = require('./routes/login');
@@ -29,8 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 // selbook 라우터 추가
+app.use('/frontbook', frontbookRouter);
 app.use('/selectbook', selectbookRouter);
-// app.use('/login', loginRouter);
+app.use('/login', loginRouter);
 app.use('/users', usersRouter); // 대출한 도서 목록 등
 app.use('/mybook', mybookRouter); // MyPage
 

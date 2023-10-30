@@ -22,7 +22,8 @@ const Home = () => {
     const fetchdata = async () => {
       try {
         // axios 사용
-        const resp = await axios.get(`${process.env.BHOST}/selectbook`)
+        // const resp = await axios.get(`${process.env.BHOST}/frontbook`) // undefined error
+        const resp = await axios.get('http://localhost:8080/frontbook') // undefined error, 직접 주소 입력함
           .catch(console.error)
         // console.log("Axios response: ", resp.data)
         setBooklst(resp.data) // 정상

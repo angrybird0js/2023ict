@@ -12,4 +12,4 @@ const userSchema = new Schema({
 
 // 토큰을 받아와야 한다.
 
-module.exports = mongoose.model('User', bookSchema, 'userinfo');
+module.exports = mongoose.model('User', userSchema, 'userinfo');

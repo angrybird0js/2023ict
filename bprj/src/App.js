@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import Join from './pages/Join';
 import Bookintro from './pages/Bookintro';
+import MyPage from './pages/MyPage';
 
 
 function App() {
@@ -17,11 +18,12 @@ function App() {
   // login join을 별개 페이지로 오픈
   // booklist는 컴포넌트를 사용하면서 홈에서 리스트를 보여준다.
   // dvi를 충접할때 parent는 position:relative, child는 absolute로 배치한다.
+  // 라우터 URI 오류 해결
 
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/bookintro:id" element={<Bookintro />} />
+      <Route path="/bookintro/:id" element={<Bookintro />} />
       <Route path="/loginpage" element={<LoginPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/join" element={<Join />} />
