@@ -1,18 +1,20 @@
-var express = require('express');
-var cors = require('cors');
+
+
 var mongoose = require('mongoose');
 var Usermodel = require("../models/usermodel");
 var Bookmodel = require("../models/bookmodel");
 
-
+var express = require('express');
+// var cors = require('cors');
 var router = express.Router();
+
 
 // 읽기 등록한 책 id 반환
 // 반납처리 라우터
 // 프론트와 대조 확인
 
 
-router.post('/', cors(), async (req, res, next) => { // isLogin 추가해야 한다.
+router.post('/', async (req, res, next) => { // isLogin 추가해야 한다.
   try {
     const { token } = req.body;
     // token 검사

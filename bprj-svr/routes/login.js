@@ -1,23 +1,26 @@
 // passport 사용하지 않기로함
-var express = require('express');
-var cors = require('cors');
+
 var mongoose = require('mongoose');
 var Usermodel = require("../models/usermodel");
 
-var cors = require('cors');
+var express = require('express');
+// var cors = require('cors');
 var router = express.Router();
-
 
 // 세션을 유지, {session: true} 와 같다.
 // redirect는 react에서 구현되어져야 한다.
-router.post('/login', cors(), async (req, res) => {
+// login router 내의 root
+router.post('/', async (req, res, next ) => {
 
-
+  console.log(req.body);
+  try {
   // 아이디 패스워드 받아서 순차적으로 검사함
-  const { username, passwd } = req.body; // post 요청 받음
+  const { id, pw } = req.body; // post 요청 받음
 
   // 데이터베이스에서 해당 유저 정보 조회
-  const user = await Usermodel.findOne({ userId: username, password: passwd });
+
+  // const user = await Usermodel.find({ userId: username, password: passwd }).lean();
+  const user = await Usermodel.find({ userId: username, password: passwd }).lean();
 
   // 사용자가 있다면
   if (user) {
@@ -27,6 +30,9 @@ router.post('/login', cors(), async (req, res) => {
     // 유저가 존재하지 않으면 로그인 실패
     res.json({ success: false, message: 'Login failed' });
   }
-})
 
+} catch (e) {
+  console.log(e)
+}
+})
 module.exports = router;

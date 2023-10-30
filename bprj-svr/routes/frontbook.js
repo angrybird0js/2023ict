@@ -1,12 +1,12 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
-var cors = require('cors');
+// var cors = require('cors');
 // var fs = require("fs");
 var Bookmodel = require("../models/bookmodel");
 
 /* GET eBook API */
-router.get('/', cors(), async (req, res, next) => {
+router.get('/', async (req, res, next ) => {
   // console.log(dummy);
   try {
     //정상

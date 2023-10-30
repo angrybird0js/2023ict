@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 // import { useState } from 'react';
 // import dummy from "../public/books.json";
-import axios from 'axios'
+import axio from "../utils/axio";
+// import axios from 'axios';
 import Booklist from "../components/Booklist";
 import Header from "../components/Header"; // Header 컴포넌트 불러오기
 import '../App.css'
@@ -23,7 +24,7 @@ const Home = () => {
       try {
         // axios 사용
         // const resp = await axios.get(`${process.env.BHOST}/frontbook`) // undefined error
-        const resp = await axios.get('http://localhost:8080/frontbook') // undefined error, 직접 주소 입력함
+        const resp = await axio.get('/frontbook') // undefined error, 직접 주소 입력함
           .catch(console.error)
         // console.log("Axios response: ", resp.data)
         setBooklst(resp.data) // 정상

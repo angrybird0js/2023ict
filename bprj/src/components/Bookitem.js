@@ -7,10 +7,11 @@ const Bookitem = ({ bookitem }) => {
   // console.log(book) // 정상
   const { title, author, language, country, year, pages, id, imageLink, link } = bookitem;
 
+    // : 없이 id를 넘김
   return (
     <div >
       <Outlet />
-      <Link to={`/bookintro/:${id}`} className="book-link">
+      <Link to={`/bookintro/${id}`} className="book-link">
         <div><img src={imageLink} alt={title} /></div>
         <div className="book-details">
           <p>{title}</p>

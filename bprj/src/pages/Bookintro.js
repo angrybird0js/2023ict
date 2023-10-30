@@ -4,8 +4,8 @@
 // import dotenv from "dotenv";
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-
-import axios from 'axios';
+// import axios from 'axios';
+import axio from "../utils/axio"
 // import dummy from '../public/books.json';
 // dotenv.config();
 
@@ -20,38 +20,45 @@ const Bookintro = () => {
   // const blst = JSON.stringify(dummy);
   // fetch의 url은 dotenv 처리해야 한다.
 
-  const [bookdata, setBookdata] = useState([]);
-  const bookidparam = useParams();
+  const [abookdata, setAbookdata] = useState([]);
+  var bookidParam = useParams();
   // 라우터의 파라미터를 받는다.
   // 파라미터 아닌 URI로 나온다.
-  console.log("parameter: ", bookidparam); // 정상
+  console.log("parameter: ", bookidParam); // 정상
+
 
   useEffect(() => {
+
+
+    // let bid = bookidParam.id;
+
     const fetchdata = async () => {
       try {
-
-        // axios 사용
-        // 로그인하지 않은 상태
-        const resp = await axios.get(`${process.env.BHOST}/selectbook/:${bookidparam.id}`) //get req, port주의
-          // { bookid: param.id }) // 오류, post방식, 닫는 괄호 추가
-          // const resp = await axios.get('http://localhost:8080/selectbook')
-          // 전체 조회
-          .catch(console.error)
-        setBookdata(resp.data) // 정상
+        const resp = await axio.get(`/selectbook/${bookidParam.id}`)
+        // const resp = await axios.get(`/selectbook/${bookidParam.id}` )
+          // .then( (respond) => {setAbookdata(respond.data)} )
+          .catch(console.error);
+        setAbookdata(resp.data); // 정상
+        console.log(resp);
       } catch (e) {
         console.log(e);
       }
+
     };
+
     fetchdata();
 
-  }, []) // useParams 오류
+  }, [bookidParam] ) // useParams 오류 해결,  문서를 열때
 
 
-  console.log("State: ", bookdata) // 빈 배열
+  console.log("State: ", abookdata) // 빈 배열, 고쳐서 정상
 
   // 331p. 문자열을 숫자로 교체해야 한다.
   // const bdata = blst[param.id];
-  const bdata = bookdata[bookidparam.id]; // 프론트 라우터 get id와 DB 대조
+  // const bdata = bookdata[bookidparam.id]; // 프론트 라우터 get id와 DB 대조
+  // const bdata = bookdata; // 프론트 라우터 get id와 DB 대조
+  // 하나의 값을 가져왔으므로 State값을 바로 사용할 수 있다.
+
 
   return (
     <div className="home-container">
@@ -59,7 +66,7 @@ const Bookintro = () => {
         <Header />
       </div>
 
-      <h1>{bdata.title} </h1>
+      <h1>{abookdata[0].title} </h1>
 
       <h2>Description</h2>
       <p>로그인해야 책을 읽을수 있습니다.</p>

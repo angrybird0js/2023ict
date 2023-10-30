@@ -16,17 +16,16 @@ var mongoose = require('mongoose');
 require('../models/bookmodel')
 require('../models/usermodel')
 
-let corsOptions = {
-  origin: "*",
+var corsOptions = {
+  // origin: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   // preflightContinue: false,
   // optionsSuccessStatus: 204,
-  // origin: 'http://localhost:3000',
-  credentials: true
+  origin: 'http://localhost:3000',
+  // credentials: true
 };
 
 dotenv.config();
-
 
 // 온라인DB에 연결함
 mongoose.connect(process.env.MONGO_DB_URI)
