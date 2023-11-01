@@ -5,7 +5,7 @@ var Usermodel = require("../models/usermodel");
 var Bookmodel = require("../models/bookmodel");
 
 var express = require('express');
-// var cors = require('cors');
+var cors = require('cors');
 var router = express.Router();
 
 
@@ -14,18 +14,18 @@ var router = express.Router();
 // 프론트와 대조 확인
 
 
-router.post('/', async (req, res, next) => { // isLogin 추가해야 한다.
+router.post('/', cors(), async (req, res, next) => { // isLogin 추가해야 한다.
   try {
     const { token } = req.body;
     // token 검사
     if (!token) {
-      res.status = 404;
+      await res.status = 404;
       return;
     };
 
     const result1 = await Usermodel.findOne({ token: this.token }).lean(); // 사용자 조회
     if (!result1) {
-      res.status = 404;
+      await res.status = 404;
       return;
     }
 
@@ -40,11 +40,11 @@ router.post('/', async (req, res, next) => { // isLogin 추가해야 한다.
     const result2 = await Bookmodel.find({ bookId: result1.bookIds }).lean(); // 개별도서 조회
 
     if (!result2) {
-      res.status = 404;
+      await res.status = 404;
       return;
     }else {
       // 한 페이지에 2종류의 데이터를 표시해야 한다.
-      res.json({ user: result1, bookidData: result2 });
+      await res.json({ user: result1, bookidData: result2 });
     }
   } catch (e) {
     console.error(e);

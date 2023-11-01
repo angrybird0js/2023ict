@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Bookmodel = require("../models/bookmodel");
 var express = require('express');
-// var cors = require('cors');
+var cors = require('cors');
 var router = express.Router();
 
 // var fs = require("fs");
@@ -15,22 +15,21 @@ var router = express.Router();
 
 
 // 하위 라우터 책의 ID , cors() 대신 proxy 사용
-router.get('/:id', async (req, res, next ) => {
-  // console.log(dummy);
-  console.log(req.params.id);
-  try {
+router.get('/:id', cors(), async (req, res, next ) => {
 
-    // const result = await Bookmodel.findOne( {$eq: [{
-    //   "id" : req.params.id }] } ) // 안됨
-      const result = await Bookmodel.find({id: req.params.id}) //성공
-      .lean(); // req.param.id에 따른 값을 조회해야 한다.
+  console.log( "조회할 id : ", req.params.id, typeof(req.params.id) );
+  // var numid = Number(req.params.id)
+  try {
+    // 자료형 변환을 하지 않았더라도 정상출력
+      const result = await Bookmodel.find({id: req.params.id}) //자료형: number
+      .lean();
     if (!result) {
       res.status = 404;
       return;
     }
     // console.log("ID를 조회한 결과값 : ", result); // 조회 안됨
 
-    res.json(result);
+    await res.json(result);
   } catch (e) {
     // res.throw(500, e); // 서버 오류만 일단 처리함
     console.error(e)

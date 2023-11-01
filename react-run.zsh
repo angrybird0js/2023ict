@@ -1,0 +1,2 @@
+cd bprj
+npm start

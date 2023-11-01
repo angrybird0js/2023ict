@@ -6,7 +6,7 @@
 
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import axio from "../utils/axio";
+// import axio from "../utils/axio";
 // import axios from 'axios';
 
 import Header from "../components/Header";
@@ -32,8 +32,10 @@ const MyPage = () => {
     const mydataset = async () => {
       try {
         // axios 사용
-        const resp = await axio.post('/mybook', //사용자, 책목록
-          { token: this.mytoken }) // 동작 확인 필요, 토큰을 키값으로 사용자명과 책목록을 불러온다.
+        const resp = await fetch('http://localhost:8080/mybook', //사용자, 책목록
+          { token: this.mytoken },
+          {method: "POST"}
+        ) // 동작 확인 필요, 토큰을 키값으로 사용자명과 책목록을 불러온다.
           // const resp = await axios.get('http://localhost:8080/selectbook')
           // 전체 조회
           .catch(console.error)

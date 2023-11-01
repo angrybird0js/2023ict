@@ -5,9 +5,9 @@ import Bookitem from "./Bookitem";
 import '../App.css'; // CSS 파일을 불러옵니다.
 
 const Booklist = ({ booklist }) => {
-  // console.log(booklist); // 정상
+  console.log(booklist); // 정상
   // props를 래핑
-
+  // props에서 map을 통하여 값을 분리하므로 오류가 발생하지 않는다. ??
 
   return (
     <div className="blist-container">

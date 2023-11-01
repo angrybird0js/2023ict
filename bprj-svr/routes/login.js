@@ -4,13 +4,13 @@ var mongoose = require('mongoose');
 var Usermodel = require("../models/usermodel");
 
 var express = require('express');
-// var cors = require('cors');
+var cors = require('cors');
 var router = express.Router();
 
 // 세션을 유지, {session: true} 와 같다.
 // redirect는 react에서 구현되어져야 한다.
 // login router 내의 root
-router.post('/', async (req, res, next ) => {
+router.post('/', cors(), async (req, res, next ) => {
 
   console.log(req.body);
   try {
@@ -25,10 +25,10 @@ router.post('/', async (req, res, next ) => {
   // 사용자가 있다면
   if (user) {
     // 토큰과 함께 접속 성공을 반환
-    res.json({ success: true, token: user.token, message: 'Login successful' });
+    await res.json({ success: true, token: user.token, message: 'Login successful' });
   } else {
     // 유저가 존재하지 않으면 로그인 실패
-    res.json({ success: false, message: 'Login failed' });
+    await res.json({ success: false, message: 'Login failed' });
   }
 
 } catch (e) {
