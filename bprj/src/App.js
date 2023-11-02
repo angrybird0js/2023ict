@@ -7,7 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
-import Join from './pages/Join';
+// import Join from './pages/Join'; //구현하지 않음
 import Bookintro from './pages/Bookintro';
 import MyPage from './pages/MyPage';
 
@@ -26,9 +26,11 @@ function App() {
       <Route path="/bookintro/:id" element={<Bookintro />} />
       <Route path="/loginpage" element={<LoginPage />} />
       <Route path="/mypage" element={<MyPage />} />
-      <Route path="/join" element={<Join />} />
+
     </Routes>
   );
 }
 
 export default App;
+
+      // <Route path="/join" element={<Join />} />

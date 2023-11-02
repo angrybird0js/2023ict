@@ -37,7 +37,7 @@ const Bookintro = () => {
   console.log("키값을 제거한 id값", bookid);
 
 
-  // 실행이 안되었을 가능성이 높다.
+  // proxy 설정한 후에는 URI만 입력(중요)
   // :id 중첩 라우터 349p.
   //
   // useEffect() 는 렌더링한 후 실행되므로 useRef() 또는 <Component /> 를 사용해야 한다.
@@ -48,7 +48,7 @@ const Bookintro = () => {
     //this.는 아님
     const fetchdata = async () => {
       try {
-        const result = await axios.get(`http://localhost:8080/selectbook/${bookid}`)
+        const result = await axios.get(`/selectbook/${bookid}`)
           //
           .catch(console.error);
         await setBookdata(result.data[0]); //

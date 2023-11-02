@@ -32,7 +32,7 @@ const MyPage = () => {
     const mydataset = async () => {
       try {
         // axios 사용
-        const resp = await fetch('http://localhost:8080/mybook', //사용자, 책목록
+        const resp = await fetch('/mybook', //사용자, 책목록
           { token: this.mytoken },
           {method: "POST"}
         ) // 동작 확인 필요, 토큰을 키값으로 사용자명과 책목록을 불러온다.

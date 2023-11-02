@@ -25,7 +25,7 @@ const Home = () => {
         // axios 사용
         // const resp = await axios.get(`${process.env.BHOST}/frontbook`) // undefined error
         // 프록시를 통해서 URL을 입력할 필요는 없다.
-        const resp = await axios('http://localhost:8080/frontbook')
+        const resp = await axios('/frontbook')
          // .then(JSON.parse(JSON.stringify())
          // .then(JSON.parse() )
          // undefined error, 직접 주소 입력함
