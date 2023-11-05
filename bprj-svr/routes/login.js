@@ -30,14 +30,23 @@ router.post('/', cors(), async (req, res, next ) => {
 
   // 데이터베이스에서 해당 유저 정보 조회
 
-  // const user = await Usermodel.find({ userId: username, password: passwd }).lean();
-  const user = await Usermodel.find({ userId: id, password: pw }).lean();
+  // const user = await Usermodel.findOne({ userId: id, password: pw }).lean(); // filter
+  const user = await Usermodel.findOne({ userId: id}).lean(); // filter 조회 성공함
+  console.log("사용자 DB 조회 : ", user)
 
+
+
+  // id pw 검증, id, pw 따로 검사
   // 사용자가 있다면
   if (user) {
+
+    if (user.password == pw) {
+      await res.json({ success: true, token: user.token, message: 'Login successful' });
+    } else {
+      await res.json({ success: false, message: 'Password Error' });
+    }
     // 토큰과 함께 접속 성공을 반환
-    // 토큰 전달 안됨
-    await res.json({ success: true, token: user.token, message: 'Login successful' });
+
   } else {
     // 유저가 존재하지 않으면 로그인 실패
     await res.json({ success: false, message: 'Login failed' });

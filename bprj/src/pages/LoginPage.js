@@ -33,16 +33,14 @@ const LoginPage = () => {
               // islogin 키 처리 추가하고 Nav에서 적용
               // navigate("/mypage");     // login 성공시 redirect
 
-          })
-         .then( (res) => {
-
            if (res.data.success) {
 
-             // localStorage.setItem("mypagekey", res.data.token);}//end if
+             localStorage.setItem("mypagekey", res.data.token);
+             }//end if
          } ) // end then
           .catch(console.error);
         // 토큰 저장
-
+        console.log(resp);
       } catch (e) {
         console.log(e);
         // login 실패시 홈으로 redirect
