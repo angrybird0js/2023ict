@@ -33,7 +33,6 @@ const Home = () => {
       <div className="header-container">
         <Header />
       </div>
-
       <div className="blist-container">
         <Booklist booklist={currentBooks} />
         <Pagination

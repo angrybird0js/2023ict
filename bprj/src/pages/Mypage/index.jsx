@@ -3,11 +3,10 @@
 // 사용자와 구독한 책 목록(컴포넌트)
 // 반납기능 추가
 //
-
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import Booklist from "../../components/Booklist"
 
 const MyPage = () => {
@@ -38,7 +37,6 @@ const MyPage = () => {
         setMydata(resp.data)
         // id 값을 바탕으로 데이터를 가져온다.
         //
-
       } catch (e) {
         console.log(e);
       }

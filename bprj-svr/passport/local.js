@@ -1,6 +1,4 @@
-
 // passport 사용하지 않기로 함
-
 var { User } = require('../models/usermodel');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
