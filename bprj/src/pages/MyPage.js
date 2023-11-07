@@ -7,7 +7,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 // import axio from "../utils/axio";
-// import axios from 'axios';
+import axios from 'axios';
 
 import Header from "../components/Header";
 import Booklist from "../components/Booklist"
@@ -15,12 +15,12 @@ import Booklist from "../components/Booklist"
 const MyPage = () => {
 
   // 오류처리 try catch
-  // const mytoken = window.localstorage.getItem("mypagekey");
+  // const mytoken = localStorage.getItem("mypagekey");
   const navigate = useNavigate();
 
-  var mytoken = window.localhost.getItem("mypagekey")
+  var mytoken = localStorage.getItem("mypagekey")
   if (!mytoken) {
-    navigate('/LoginPage')
+    navigate('/loginpage')
     // res.redirect("/LoginPage") ?? backend
   }
 
@@ -32,12 +32,7 @@ const MyPage = () => {
     const mydataset = async () => {
       try {
         // axios 사용
-        const resp = await fetch('/mybook', //사용자, 책목록
-          { token: this.mytoken },
-          {method: "POST"}
-        ) // 동작 확인 필요, 토큰을 키값으로 사용자명과 책목록을 불러온다.
-          // const resp = await axios.get('http://localhost:8080/selectbook')
-          // 전체 조회
+          const resp = await axios.post('/mybook', {token: mytoken} ) //사용자, 책목록
           .catch(console.error)
         setMydata(resp.data)
         // id 값을 바탕으로 데이터를 가져온다.
@@ -52,7 +47,7 @@ const MyPage = () => {
     // 템플릿에 정리해야함, useState
     // 사용자 mydata.user , 읽는책 mydata.bookidData
 
-  }, [mytoken, mydata])
+  }, [mytoken])
 
   // 사용자 정보를 가져온 후 읽고있는 책 id를 바탕으로 책 정보를 가져와 컴포넌트를 통해 출력해야 한다.
   // mydata.bookidData[]

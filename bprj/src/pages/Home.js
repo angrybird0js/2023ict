@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Booklist from "../components/Booklist";
 import Header from "../components/Header"; // Header 컴포넌트 불러오기
+// import Pagination from '../components/Pagination/index';
 import '../App.css'
 
 // dotenv.config();
@@ -16,6 +17,8 @@ const Home = () => {
   // fetch의 url은 dotenv 처리해야 한다.
 
   const [booklst, setBooklst] = useState([]);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [booksPerPage] = useState(6);
 
   useEffect(() => {
     // 382p.
@@ -41,6 +44,13 @@ const Home = () => {
 
   }, [])
 
+  // pagination test
+  // const indexOfLastBook = currentPage * booksPerPage;
+  // const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  // const currentBooks = booklst.slice(indexOfFirstBook, indexOfLastBook);
+
+  // const paginate = pageNumber => setCurrentPage(pageNumber);
+
   // console.log("state booklst: ", booklst); // 정상
   return (
     <div className="home-container">
@@ -49,6 +59,7 @@ const Home = () => {
       </div>
 
       <Booklist booklist={booklst} />
+
 
     </div>
   );
@@ -63,3 +74,9 @@ export default Home;
 //   "Accept": 'application/json',
 //   "Content-Type": 'application/json'
 // }
+
+// <Pagination
+//   booksPerPage={booksPerPage}
+//   totalBooks={booklst.length}
+//   paginate={paginate}
+// />

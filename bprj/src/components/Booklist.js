@@ -1,7 +1,7 @@
 // Booklist.js
 import React from 'react';
 // import { useState, useEffect } from 'react';
-import Bookitem from "./Bookitem";
+import Bookitem from "./Bookitem/index";
 import '../App.css'; // CSS 파일을 불러옵니다.
 
 const Booklist = ({ booklist }) => {

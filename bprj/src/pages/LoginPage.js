@@ -31,12 +31,10 @@ const LoginPage = () => {
           .then((res) => {
             console.log("로그인 결과: ", res.data) // 안나옴
               // islogin 키 처리 추가하고 Nav에서 적용
-              // navigate("/mypage");     // login 성공시 redirect
-
            if (res.data.success) {
-
              localStorage.setItem("mypagekey", res.data.token);
-             }//end if
+            }//end if
+
          } ) // end then
           .catch(console.error);
         // 토큰 저장
@@ -48,6 +46,11 @@ const LoginPage = () => {
     }; // end conn
     conn();
 
+    // var istoken = localStorage.getItem("mypagekey")
+    // if (istoken) {
+    //   navigate("/mypage");     // login 성공시 redirect
+    //   // res.redirect("/LoginPage") ?? backend
+    // }
 
 
   };
